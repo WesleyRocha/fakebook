@@ -1,4 +1,7 @@
 Fakebook::Application.routes.draw do
+  resources :posts
+
+
   get 'frontend/:template' => 'frontend#show'
 
   get 'frontend(/index)' => 'frontend#index'
