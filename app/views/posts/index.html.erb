@@ -1,25 +1,53 @@
-<h1>Listing posts</h1>
+<%= render 'user_profile'%>
+<section id="news-feed">
+  <div class="box">
+    <header class="box-header">
+      <%= link_to 'Atualizar Status', new_post_path, class: 'button' %>
+    </header>
+    <div class="box-content">
+      <div class="list-view ui-comments-list">
+        <ul>
+          <% @posts.each do |post| %>
+          <li>
+            <div class="item-image usuario">
+              <span class="item-image-wrap"><img width="40" height="40" src="<%= post.image %>" /></span>
+            </div>
+            <div class="item-info">
+              <div class="item-activity">
+                <div class="user-name">
+                  Chuck Norris
+                </div>
+                <div class="user-comment">
+                  <%= simple_format(post.body) %>
+                </div>
+                <div class="item-actions">
+                  <span class="action-like">
+                    <a href="#">Curtir</a>
+                  </span>
+                  <span class="action-comment">
+                    <%= link_to 'Comentar', post %>
+                  </span>
+                   <span class="action-comment">
+                    <%= link_to 'Excluir', post, method: :delete, data: { confirm: 'Tem certeza?' } %>
+                  </span>
+                  <span class="count-likes">
+                    <a>2</a>
+                  </span>
+                  <span class="count-comments">
+                    <a>0</a>
+                  </span>
+                  <span class="timestamp"><%=time_ago_in_words(post.created_at)%> atrás</span>
+                  <div style="position: absolute;right: 0;top: 0;">
+                    <%= link_to 'Edit', edit_post_path(post) %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
-<table>
-  <tr>
-    <th>Body</th>
-    <th>Image</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @posts.each do |post| %>
-  <tr>
-    <td><%= post.body %></td>
-    <td><%= post.image %></td>
-    <td><%= link_to 'Show', post %></td>
-    <td><%= link_to 'Edit', edit_post_path(post) %></td>
-    <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Post', new_post_path %>
