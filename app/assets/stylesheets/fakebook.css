@@ -4406,11 +4406,12 @@ nav.nav-user ul li.item-username {
 }
 #update-status form .item-image {
   position: absolute;
-  left: 0;
+  left: -65px;
   top: 0;
 }
 #update-status form .comment-textarea {
   margin-left: 65px;
+  position: relative;
 }
 #update-status form .comment-textarea textarea {
   -webkit-border-radius: 0;
